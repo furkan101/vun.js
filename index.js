@@ -122,6 +122,26 @@ module.exports = function() {
         })
     }
 
+    this.DataCount = (dbName) => {
+
+        let dataCount = 0
+
+        fs.readFile(`${path}/${dbName}.json`, 'utf-8', (err, data) => {
+            if(err) {
+                console.log(err)
+            }
+            else {
+                var jsonData = JSON.parse(data)
+
+                for(let i = 0; i < jsonData.length; i++) {
+                    dataCount++
+                }    
+            }
+        })
+
+        return dataCount
+    }
+
     this.DeleteTable = (dbName) => {
         fs.unlink(`${path}/${dbName}.json`, err => {
             if(err) {
