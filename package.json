@@ -1,0 +1,20 @@
+{
+  "name": "vun.js",
+  "version": "1.0.0",
+  "description": "VunJS is a simple database library written in Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glorfinw/vun.js.git"
+  },
+  "keywords": [],
+  "author": "Glorfin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/glorfinw/vun.js/issues"
+  },
+  "homepage": "https://github.com/glorfinw/vun.js#readme"
+}
