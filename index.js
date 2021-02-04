@@ -44,14 +44,7 @@ module.exports = function() {
 
         path = dir
     
-        fs.mkdir(dir, (err) => {
-            if(err) {
-                console.log(err)
-            }
-            else {
-                console.log('Database has been set up correctly.')
-            }
-        })
+        fs.mkdir(dir, (err) => { console.log('Database has been set up correctly.') })
     }
 
     this.ReadAllData = (dbName) => {
@@ -66,6 +59,7 @@ module.exports = function() {
         let arr = new Array()
 
         fs.readFile(`${path}/${dbName}.json`, 'utf-8', (err, data) => {
+
             if(err) {
                 console.error(`Database ${dbName} does not exists.`)
             }
@@ -91,34 +85,29 @@ module.exports = function() {
         let arr = new Array()
 
         fs.readFile(`${path}/${dbName}.json`, 'utf-8', (err, data) => {
-            if(err) {
-                console.error(`Database ${dbName} does not exists.`)
-            }
-            else {
-                var jsonData = JSON.parse(data)
+            var jsonData = JSON.parse(data)
 
-                for(let i = 0; i < jsonData.length; i++) {
+            for(let i = 0; i < jsonData.length; i++) {
 
-                    let dataToSearch = JSON.stringify(searchData).substring(1).slice(0,-1)
+                let dataToSearch = JSON.stringify(searchData).substring(1).slice(0,-1)
 
-                    if(!(JSON.stringify(jsonData[i]).includes(dataToSearch))) {
-                        arr.push(jsonData[i])
-                    }
-
-                    if(repeat != 0 && i == repeat) {
-                        break
-                    }
+                if(!JSON.stringify(jsonData[i]).includes(dataToSearch)) {
+                    arr.push(jsonData[i])
                 }
 
-                fs.writeFile(`${path}/${dbName}.json`, JSON.stringify(array), (err) => {
-                    if(err) {
-                        console.log(err)
-                    }
-                    else {
-                        console.log(`Data(s) has been deleted from ${dbName}.`)
-                    }
-                })
+                if(repeat != 0 && i == repeat) {
+                    break
+                }
             }
+
+            fs.writeFile(`${path}/${dbName}.json`, JSON.stringify(arr), (err) => {
+                if(err) {
+                    console.log(err)
+                }
+                else {
+                    console.log(`Data(s) has been deleted from ${dbName}.`)
+                }
+            })
         })
     }
 

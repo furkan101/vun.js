@@ -28,7 +28,7 @@ const vunjs = new VunJS()
  - `InsertData(string dbName, JSON data)` Inserts JSON object you entered in second param to database you entered in first param.
  - `DeleteData(string dbName, JSON data, repeat = 0)` Deletes data you gave in second param from dbName. If repeat is set to 0, which is default, it will delete only first data. If set to more than 0, it will delete all datas until reaching repeat number.
  - `ReadAllData(string dbName)` Returns you all objects in database as an array.
- - `SearchData(string dbName, JSON objectToSearch)` Searches object you gave in second param in database, returns all objects matches as an array.
+ - `SearchData(string dbName, JSON objectToSearch)` Searches object you gave in second param in database, returns all objects match as an array.
  - `DataCount(string dbName)` Returns row count of dbName.
 
 # Example
