@@ -1,5 +1,6 @@
-const vunVar = require('./variables')
 const fs = require('fs')
+
+module.exports.path = "";
 
 module.exports.SetupDatabase = async function(dir) {
     vunVar.path = dir
