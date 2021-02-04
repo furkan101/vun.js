@@ -4,12 +4,22 @@ let path = ""
 
 module.exports = function() {
 
-    this.CreateDatabase = (dbName) => {
+    this.CreateTable = (dbName) => {
+
         fs.createWriteStream(`${path}/${dbName}.json`)
-        console.log('Database has been created.')
+
+        fs.writeFile(`${path}/${dbName}.json`, "[]", (err) => {
+            if(err) {
+                console.log(err)
+            }
+            else {
+                console.log('Database has been created.')
+            }
+        })
     }
 
     this.InsertData = (dbName, newData) => {
+
         fs.readFile(`${path}/${dbName}.json`, 'utf-8', (err, data) => {
             if(err) {
                 console.log(err)
@@ -31,6 +41,7 @@ module.exports = function() {
     }
 
     this.SetupDatabase = (dir) => {
+
         path = dir
     
         fs.mkdir(dir, (err) => {
@@ -39,6 +50,7 @@ module.exports = function() {
     }
 
     this.ReadAllData = (dbName) => {
+
         fs.readFile(`${path}/${dbName}.json`, 'utf-8', (err, data) => {
             return JSON.parse(data)
         })
