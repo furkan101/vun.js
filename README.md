@@ -22,24 +22,25 @@ const vunjs = new VunJS()
 ```
 
 # Function List
- - `SetupDatabase(string directory)` Creates database directory you entered in directory parameter.
+ - `SetupDatabase(string directory)` Creates database directory you entered in directory param.
  - `CreateTable(string dbName)` Creates database file in directory with JSON file format.
- - `InsertData(string dbName, JSON data)` Inserts JSON object you entered in second to database you entered in first parameter.
+ - `DeleteTable(string dbName)` Deletes the table you entered in dbName param if it exists.
+ - `InsertData(string dbName, JSON data)` Inserts JSON object you entered in second param to database you entered in first param.
+ - `DeleteData(string dbName, JSON data, repeat = 0)` Deletes data you gave in second param from dbName. If repeat is set to 0, which is default, it will delete only first data. If set to more than 0, it will delete all datas until reaching repeat number.
  - `ReadAllData(string dbName)` Returns you all objects in database as an array.
- - `SearchData(string dbName, JSON objectToSearch)` Searches object you given in second param in database, returns you all objects matches as an array.
+ - `SearchData(string dbName, JSON objectToSearch)` Searches object you gave in second param in database, returns all objects matches as an array.
 
 # Example
 ```javascript
 const VunJS = require('vun.js')
 const vunjs = new VunJS()
 
-vunjs.SetupDatabase('E:/VunJS/')
+vunjs.SetupDatabase('./database/')
 vunjs.CreateTable('users')
 vunjs.SearchData('users', { name: "test", surname: "blabla" })
 ```  
 
 # TODO
  - Fix SearchData's returning array issue.
- - Add DeleteTable function.
  - Add DeleteData function.
  - Add CreateUniqueID function.

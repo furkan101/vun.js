@@ -13,7 +13,7 @@ module.exports = function() {
                 console.log(err)
             }
             else {
-                console.log('Database has been created.')
+                console.log(`Table ${dbName} has been created.`)
             }
         })
     }
@@ -33,7 +33,7 @@ module.exports = function() {
                         console.log(err)
                     }
                     else {
-                        console.log(`New data has been successfully added to ${dbName}`)
+                        console.log(`New data has been successfully added to ${dbName}.`)
                     }
                 })
             }
@@ -45,7 +45,12 @@ module.exports = function() {
         path = dir
     
         fs.mkdir(dir, (err) => {
-            console.log('Database has been set up correctly.')
+            if(err) {
+                console.log(err)
+            }
+            else {
+                console.log('Database has been set up correctly.')
+            }
         })
     }
 
@@ -68,6 +73,7 @@ module.exports = function() {
                 var jsonData = JSON.parse(data)
 
                 for(let i = 0; i < jsonData.length; i++) {
+
                     let dataToSearch = JSON.stringify(searchData).substring(1).slice(0,-1)
 
                     if(JSON.stringify(jsonData[i]).includes(dataToSearch)) {
@@ -78,5 +84,52 @@ module.exports = function() {
         })
 
         return arr
+    }
+
+    this.DeleteData = (dbName, searchData, repeat = 0) => {
+
+        let arr = new Array()
+
+        fs.readFile(`${path}/${dbName}.json`, 'utf-8', (err, data) => {
+            if(err) {
+                console.error(`Database ${dbName} does not exists.`)
+            }
+            else {
+                var jsonData = JSON.parse(data)
+
+                for(let i = 0; i < jsonData.length; i++) {
+
+                    let dataToSearch = JSON.stringify(searchData).substring(1).slice(0,-1)
+
+                    if(!(JSON.stringify(jsonData[i]).includes(dataToSearch))) {
+                        arr.push(jsonData[i])
+                    }
+
+                    if(repeat != 0 && i == repeat) {
+                        break
+                    }
+                }
+
+                fs.writeFile(`${path}/${dbName}.json`, JSON.stringify(array), (err) => {
+                    if(err) {
+                        console.log(err)
+                    }
+                    else {
+                        console.log(`Data(s) has been deleted from ${dbName}.`)
+                    }
+                })
+            }
+        })
+    }
+
+    this.DeleteTable = (dbName) => {
+        fs.unlink(`${path}/${dbName}.json`, err => {
+            if(err) {
+                console.error(err)
+            }
+            else {
+                console.log('Database has been deleted successfully.')
+            }
+        })
     }
 }
