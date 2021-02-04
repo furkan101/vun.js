@@ -1,43 +1,68 @@
 const fs = require('fs')
 
-module.exports.path = "";
+let path = ""
 
-module.exports.SetupDatabase = async function(dir) {
-    vunVar.path = dir
+module.exports = function() {
 
-    fs.mkdir(dir, (err) => {
-        console.log('Database has been set up correctly.')
-    })
-}
+    this.CreateDatabase = (dbName) => {
+        fs.createWriteStream(`${path}/${dbName}.json`)
+        console.log('Database has been created.')
+    }
 
-module.exports.CreateDatabase = async function(dbName) {
-    fs.createWriteStream(`${vunVar.path}/${dbName}.json`)
-    console.log('Database has been created.')
-}
+    this.InsertData = (dbName, newData) => {
+        fs.readFile(`${path}/${dbName}.json`, 'utf-8', (err, data) => {
+            if(err) {
+                console.log(err)
+            }
+            else {
+                var jsonArray = JSON.parse(data)
+                jsonArray.push(newData)
+    
+                fs.writeFile(`${path}/${dbName}.json`, JSON.stringify(jsonArray), (err) => {
+                    if(err) {
+                        console.log(err)
+                    }
+                    else {
+                        console.log(`New data has been successfully added to ${dbName}`)
+                    }
+                })
+            }
+        })
+    }
 
-module.exports.InsertData = async function(dbName, newData) {
-    fs.readFile(`${vunVar.path}/${dbName}.json`, 'utf-8', (err, data) => {
-        if(err) {
-            console.log(err)
-        }
-        else {
-            var jsonArray = JSON.parse(data)
-            jsonArray.push(newData)
+    this.SetupDatabase = (dir) => {
+        path = dir
+    
+        fs.mkdir(dir, (err) => {
+            console.log('Database has been set up correctly.')
+        })
+    }
 
-            fs.writeFile(`${vunVar.path}/${dbName}.json`, JSON.stringify(jsonArray), (err) => {
-                if(err) {
-                    console.log(err)
+    this.ReadAllData = (dbName) => {
+        fs.readFile(`${path}/${dbName}.json`, 'utf-8', (err, data) => {
+            console.log(JSON.parse(data))
+        })
+    }
+
+    this.SearchData = (dbName, searchData) => {
+
+        let arr = new Array()
+
+        fs.readFile(`${path}/${dbName}.json`, 'utf-8', (err, data) => {
+            if(err) {
+                console.error(`Database ${dbName} does not exists.`)
+            }
+            else {
+                var jsonData = JSON.parse(data)
+
+                for(let i = 0; i < jsonData.length; i++) {
+                    if(JSON.stringify(jsonData[i]).includes(JSON.stringify(searchData).replace("}", ""))) {
+                        arr.push(jsonData[i])
+                    }
                 }
-                else {
-                    console.log(`New data has been successfully added to ${dbName}`)
-                }
-            })
-        }
-    })
-}
+            }
+        })
 
-module.exports.ReadData = async function(dbName) {
-    fs.readFile(`${vunVar.path}/${dbName}.json`, 'utf-8', (err, data) => {
-        console.log(JSON.parse(data))
-    })
+        return arr
+    }
 }
