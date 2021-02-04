@@ -47,16 +47,16 @@ module.exports = function() {
         fs.mkdir(dir, (err) => { console.log('Database has been set up correctly.') })
     }
 
-    this.ReadAllData = (dbName) => {
+    this.ReadAllData = (dbName, callback) => {
 
         fs.readFile(`${path}/${dbName}.json`, 'utf-8', (err, data) => {
-            return JSON.parse(data)
+            callback(JSON.parse(data))
         })
     }
 
-    this.SearchData = (dbName, searchData) => {
+    this.SearchData = (dbName, searchData, callback) => {
 
-        let arr = new Array()
+        var arr = []
 
         fs.readFile(`${path}/${dbName}.json`, 'utf-8', (err, data) => {
 
@@ -75,9 +75,9 @@ module.exports = function() {
                     }
                 }
             }
-        })
 
-        return arr
+            callback(arr)
+        })
     }
 
     this.DeleteData = (dbName, searchData, repeat = 0) => {

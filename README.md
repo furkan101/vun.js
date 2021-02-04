@@ -27,8 +27,8 @@ const vunjs = new VunJS()
  - `DeleteTable(string dbName)` Deletes the table you entered in dbName param if it exists.
  - `InsertData(string dbName, JSON data)` Inserts JSON object you entered in second param to database you entered in first param.
  - `DeleteData(string dbName, JSON data, repeat = 0)` Deletes data you gave in second param from dbName. If repeat is set to 0, which is default, it will delete only first data. If set to more than 0, it will delete all datas until reaching repeat number.
- - `ReadAllData(string dbName)` Returns you all objects in database as an array.
- - `SearchData(string dbName, JSON objectToSearch)` Searches object you gave in second param in database, returns all objects match as an array.
+ - `ReadAllData(string dbName, function callback)` Returns you all objects in database as an array.
+ - `SearchData(string dbName, JSON objectToSearch, function callback)` Searches object you gave in second param in database, returns all objects match as an array.
  - `DataCount(string dbName)` Returns row count of dbName.
 
 # Example
@@ -39,10 +39,11 @@ const vunjs = new VunJS() // Creating new object from our class.
 vunjs.SetupDatabase('./database/') // Setting up database path.
 vunjs.CreateTable('users') // Creating our table named users as JSON file.
 vunjs.InsertData('users', { name: "test", surname: "blabla" }) // Inserting new data to users database as JSON object.
-vunjs.SearchData('users', { surname: "blabla" }) // Searching data if any of it mathches our JSON object. It will return an array.
+vunjs.SearchData('users', { surname: "blabla" }, (data) => {
+    console.log(data)
+}) // Searching data if any of it mathches our JSON object and printing it out as an array.
 vunjs.DeleteData('users', { name: "test" }, vunjs.DataCount('users')) // Delete all data in users table if contains JSON object.
 ```  
 
 # TODO
- - Fix SearchData's returning array issue.
  - Add CreateUniqueID function.
