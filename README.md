@@ -40,7 +40,7 @@ vunjs.SetupDatabase('./database/') // Setting up database path.
 vunjs.CreateTable('users') // Creating our table named users as JSON file.
 vunjs.InsertData('users', { name: "test", surname: "blabla" }) // Inserting new data to users database as JSON object.
 vunjs.SearchData('users', { surname: "blabla" }) // Searching data if any of it mathches our JSON object. It will return an array.
-vunjs.DeleteData('users', { name: "test" }, vunjs.DataCount('users')) // Delete all data in users table.
+vunjs.DeleteData('users', { name: "test" }, vunjs.DataCount('users')) // Delete all data in users table if contains JSON object.
 ```  
 
 # TODO
