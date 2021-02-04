@@ -40,7 +40,7 @@ module.exports = function() {
 
     this.ReadAllData = (dbName) => {
         fs.readFile(`${path}/${dbName}.json`, 'utf-8', (err, data) => {
-            console.log(JSON.parse(data))
+            return JSON.parse(data)
         })
     }
 
