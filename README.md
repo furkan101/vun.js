@@ -4,7 +4,7 @@
 VunJS is a simple database library written in Node.js for inserting, reading and deleting data in JSON format.
 
 # Contributing
-All you have to do is to fork repository, code stuff, commit and create pull request. I suggest using GitHub Desktop.  I have list of TODO for vun.js so you can see what project needs.
+All you have to do is forking repository, coding stuff, committing and creating pull request. I suggest using GitHub Desktop.  I have list of TODO for vun.js so you can see what project needs.
 
 # Installation
 
