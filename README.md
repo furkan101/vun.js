@@ -26,7 +26,17 @@ const vunjs = new VunJS()
  - `CreateTable(string dbName)` Creates database file in directory with JSON file format.
  - `InsertData(string dbName, JSON data)` Inserts JSON object you entered in second to database you entered in first parameter.
  - `ReadAllData(string dbName)` Returns you all objects in database as an array.
- - `SearchData(string dbName, JSON objectToSearch)` Searches object you given in second param in database, returns you all objects matches as an array.  
+ - `SearchData(string dbName, JSON objectToSearch)` Searches object you given in second param in database, returns you all objects matches as an array.
+
+# Example
+```javascript
+const VunJS = require('vun.js')
+const vunjs = new VunJS()
+
+vunjs.SetupDatabase('E:/VunJS/')
+vunjs.CreateTable('users')
+vunjs.SearchData('users', { name: "test", surname: "blabla" })
+```  
 
 # TODO
  - Fix SearchData's returning array issue.
