@@ -32,15 +32,15 @@ const vunjs = new VunJS()
 
 # Example
 ```javascript
-const VunJS = require('vun.js')
-const vunjs = new VunJS()
+const VunJS = require('vun.js') // Creating our class from source file.
+const vunjs = new VunJS() // Creating new object from our class.
 
-vunjs.SetupDatabase('./database/')
-vunjs.CreateTable('users')
-vunjs.SearchData('users', { name: "test", surname: "blabla" })
+vunjs.SetupDatabase('./database/') // Setting up database path.
+vunjs.CreateTable('users') // Creating our table named users as JSON file.
+vunjs.InsertData('users', { name: "test", surname: "blabla" }) // Inserting new data to users database as JSON object.
+vunjs.SearchData('users', { surname: "blabla" }) // Searching data if any of it mathches our JSON object. It will return an array.
 ```  
 
 # TODO
  - Fix SearchData's returning array issue.
- - Add DeleteData function.
  - Add CreateUniqueID function.
