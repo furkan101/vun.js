@@ -25,6 +25,18 @@ module.exports = function() {
                 console.log(err)
             }
             else {
+
+                var uniqueID = 10000
+                uniqueID = Math.floor(Math.random() * 9999)
+
+                for(let i = 0; i < data.length; i++) {
+                    if(uniqueID == data[i][0]) {
+                        uniqueID = Math.floor(Math.random() * 9999)
+                    }
+                }
+
+                newData.id = uniqueID
+
                 var jsonArray = JSON.parse(data)
                 jsonArray.push(newData)
     

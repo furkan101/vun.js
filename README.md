@@ -43,7 +43,13 @@ vunjs.SearchData('users', { surname: "blabla" }, (data) => {
     console.log(data)
 }) // Searching data if any of it mathches our JSON object and printing it out as an array.
 vunjs.DeleteData('users', { name: "test" }, vunjs.DataCount('users')) // Delete all data in users table if contains JSON object.
-```  
+```
+
+---
+**NOTE**
+
+Do not try to insert any unique ID's to database you insert data into. It already creates a unique ID and adds it into your JSON object.
+
+---
 
 # TODO
- - Add CreateUniqueID function.
