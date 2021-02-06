@@ -26,15 +26,19 @@ module.exports = function() {
             }
             else {
 
-                var uniqueID = 10000
-                uniqueID = Math.floor(Math.random() * 9999)
+                var uniqueID = -1
+                uniqueID = Math.floor(Math.random() * 9999999)
 
                 for(let i = 0; i < data.length; i++) {
                     if(uniqueID == data[i][0]) {
-                        uniqueID = Math.floor(Math.random() * 9999)
+                        uniqueID = Math.floor(Math.random() * 9999999)
                     }
                 }
 
+                if(uniqueID == -1) {
+                    return console.log('There is an error. Server could not insert data.')
+                }
+                
                 newData.id = uniqueID
 
                 var jsonArray = JSON.parse(data)
