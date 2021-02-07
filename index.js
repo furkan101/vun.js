@@ -70,6 +70,30 @@ module.exports = function() {
         })
     }
 
+    this.UpdateData = (dbName, uID, newData) => {
+
+        fs.readFile(`${path}/${dbName}.json`, 'utf-8', (err, data) => {
+
+            var jsonData = JSON.parse(data), sData = {}
+
+            for(let i = 0; i < jsonData.length; i++) {
+                if(jsonData[i].id === uID) {
+                    sData = jsonData[i]
+                    break
+                }
+            }
+
+            var keys = Object.keys(newData), values = Object.values(newData), i = 0
+
+            for(var key in keys) {
+                sData[keys[key]] = values[i]
+                i++
+            }
+
+            fs.writeFile(`${path}/${dbName}.json`, JSON.stringify(jsonData), (err) => {})
+        })
+    }
+
     this.SearchData = (dbName, searchData, callback) => {
 
         var arr = []

@@ -30,6 +30,7 @@ const vunjs = new VunJS()
  - `ReadAllData(string dbName, function callback)` Returns you all objects in database as an array.
  - `SearchData(string dbName, JSON objectToSearch, function callback)` Searches object you gave in second param in database, returns all objects match as an array.
  - `DataCount(string dbName)` Returns row count of dbName.
+ - `UpdateData(string dbName, int uniqueID, JSON object)` Updates attributes of uniqueID.
 
 # Example
 ```javascript
@@ -43,6 +44,7 @@ vunjs.SearchData('users', { surname: "blabla" }, (data) => {
     console.log(data)
 }) // Searching data if any of it mathches our JSON object and printing it out as an array.
 vunjs.DeleteData('users', { name: "test" }, vunjs.DataCount('users')) // Delete all data in users table if contains JSON object.
+vunjs.UpdateData('users', 1258111, { name: "Testv2" }) // Changing our name from test to Testv2
 ```
 
 ---
