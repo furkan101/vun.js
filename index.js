@@ -12,9 +12,6 @@ module.exports = function() {
             if(err) {
                 console.log(err)
             }
-            else {
-                console.log(`Table ${dbName} has been created.`)
-            }
         })
     }
 
@@ -48,9 +45,6 @@ module.exports = function() {
                     if(err) {
                         console.log(err)
                     }
-                    else {
-                        console.log(`New data has been successfully added to ${dbName}.`)
-                    }
                 })
             }
         })
@@ -60,7 +54,7 @@ module.exports = function() {
 
         path = dir
     
-        fs.mkdir(dir, (err) => { console.log('Database has been set up correctly.') })
+        fs.mkdir(dir, (err) => { console.log('[VUN.JS] - Database has been set up successfully.') })
     }
 
     this.ReadAllData = (dbName, callback) => {
@@ -144,9 +138,6 @@ module.exports = function() {
                 if(err) {
                     console.log(err)
                 }
-                else {
-                    console.log(`Data(s) has been deleted from ${dbName}.`)
-                }
             })
         })
     }
@@ -175,9 +166,6 @@ module.exports = function() {
         fs.unlink(`${path}/${dbName}.json`, err => {
             if(err) {
                 console.error(err)
-            }
-            else {
-                console.log('Database has been deleted successfully.')
             }
         })
     }
