@@ -17,6 +17,8 @@ module.exports = function() {
 
     this.InsertData = (dbName, newData) => {
 
+        if(typeof newData !== 'object') throw "Second parameter's type must be an object."
+
         fs.readFile(`${path}/${dbName}.json`, 'utf-8', (err, data) => {
             if(err) {
                 console.log(err)
@@ -66,6 +68,9 @@ module.exports = function() {
 
     this.UpdateData = (dbName, uID, newData) => {
 
+        if(typeof uID !== 'number') throw "User ID parameter must be a number."
+        if(typeof newData !== 'object') throw "Second parameter's type must be an object."
+
         fs.readFile(`${path}/${dbName}.json`, 'utf-8', (err, data) => {
 
             var jsonData = JSON.parse(data), sData = {}
@@ -89,6 +94,8 @@ module.exports = function() {
     }
 
     this.SearchData = (dbName, searchData, callback) => {
+
+        if(typeof searchData !== 'object') throw "Second parameter's type must be an object."
 
         var arr = []
 
@@ -115,6 +122,8 @@ module.exports = function() {
     }
 
     this.DeleteData = (dbName, searchData, repeat = 0) => {
+
+        if(typeof searchData !== 'object') throw "Second parameter's type must be an object."
 
         let arr = new Array()
 
